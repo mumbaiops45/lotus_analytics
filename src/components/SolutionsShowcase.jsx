@@ -1,9 +1,9 @@
 import React, { useRef } from "react";
-import { motion, useInView } from "framer-motion";
+// import { motion, useInView } from "framer-motion";
 
 const SolutionsShowcase = () => {
   const sectionRef = useRef(null);
-  const isInView = useInView(sectionRef, { once: true, amount: 0.2 });
+  // const isInView = useInView(sectionRef, { once: true, amount: 0.2 });
 
   const solutionCards = [
     {

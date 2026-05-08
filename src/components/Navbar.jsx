@@ -18,7 +18,6 @@ export default function Navbar() {
     };
 
     window.addEventListener("scroll", handleScroll);
-
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
@@ -41,8 +40,6 @@ export default function Navbar() {
         }`}
       >
         <div className="max-w-[1500px] mx-auto px-4 lg:px-8">
-
-          {/* NAVBAR */}
           <div className="h-[88px] flex items-center justify-between">
 
             {/* LOGO */}
@@ -61,17 +58,13 @@ export default function Navbar() {
               />
             </a>
 
-            {/* DESKTOP RIGHT SIDE */}
+            {/* DESKTOP MENU */}
             <div className="hidden xl:flex items-center gap-10 ml-auto">
 
-              {/* MENUS */}
               <div className="flex items-center gap-7">
 
                 {menu.map((item, index) => (
-                  <div
-                    key={index}
-                    className="group relative"
-                  >
+                  <div key={index} className="group relative">
 
                     <button
                       className={`flex items-center gap-1 text-[15px] font-medium transition-all duration-300 ${
@@ -80,13 +73,11 @@ export default function Navbar() {
                           : "text-[#505866] hover:text-black"
                       }`}
                     >
-
                       {item}
 
                       {item !== "Centraverse™" && (
                         <HiChevronDown className="text-[17px] transition duration-300 group-hover:rotate-180" />
                       )}
-
                     </button>
 
                     {/* DROPDOWN */}
@@ -98,43 +89,37 @@ export default function Navbar() {
                             : "bg-white border border-zinc-200"
                         }`}
                       >
-
-                        <a
-                          href="#"
-                          className={`block px-6 py-4 text-sm transition ${
+                        <button
+                          className={`block w-full text-left px-6 py-4 text-sm ${
                             scroll
                               ? "text-white/80 hover:bg-white/5 hover:text-white"
                               : "text-zinc-700 hover:bg-zinc-100"
                           }`}
                         >
                           AI Analytics
-                        </a>
+                        </button>
 
-                        <a
-                          href="#"
-                          className={`block px-6 py-4 text-sm transition ${
+                        <button
+                          className={`block w-full text-left px-6 py-4 text-sm ${
                             scroll
                               ? "text-white/80 hover:bg-white/5 hover:text-white"
                               : "text-zinc-700 hover:bg-zinc-100"
                           }`}
                         >
                           Business Automation
-                        </a>
+                        </button>
 
-                        <a
-                          href="#"
-                          className={`block px-6 py-4 text-sm transition ${
+                        <button
+                          className={`block w-full text-left px-6 py-4 text-sm ${
                             scroll
                               ? "text-white/80 hover:bg-white/5 hover:text-white"
                               : "text-zinc-700 hover:bg-zinc-100"
                           }`}
                         >
                           Enterprise Software
-                        </a>
-
+                        </button>
                       </div>
                     )}
-
                   </div>
                 ))}
 
@@ -149,7 +134,6 @@ export default function Navbar() {
                 >
                   Contact
                 </a>
-
               </div>
 
               {/* SEARCH */}
@@ -160,15 +144,9 @@ export default function Navbar() {
                     : "bg-zinc-100 border border-zinc-200 text-zinc-600"
                 }`}
               >
-
                 <HiSearch className="text-[20px]" />
-
-                <span className="text-sm font-medium">
-                  Search...
-                </span>
-
+                <span className="text-sm font-medium">Search...</span>
               </button>
-
             </div>
 
             {/* MOBILE BUTTON */}
@@ -180,17 +158,13 @@ export default function Navbar() {
                   : "bg-zinc-100 border border-zinc-200 text-black"
               }`}
             >
-
               {mobileMenu ? (
                 <HiOutlineX className="text-3xl" />
               ) : (
                 <HiOutlineMenuAlt4 className="text-3xl" />
               )}
-
             </button>
-
           </div>
-
         </div>
 
         {/* MOBILE MENU */}
@@ -201,7 +175,6 @@ export default function Navbar() {
               : "max-h-0 opacity-0 invisible"
           }`}
         >
-
           <div
             className={`mx-4 mb-4 rounded-3xl overflow-hidden ${
               scroll
@@ -209,22 +182,11 @@ export default function Navbar() {
                 : "bg-white border border-zinc-200"
             }`}
           >
-
-            {/* MOBILE LINKS */}
             <div className="flex flex-col">
-
-              {[
-                "Business Services",
-                "Solutions",
-                "Centraverse™",
-                "Industries",
-                "Company",
-                "Insights",
-                "Contact",
-              ].map((item, index) => (
+              {menu.concat("Contact").map((item, index) => (
                 <a
                   key={index}
-                  href="#"
+                  href={item === "Contact" ? "#contact" : "#"}
                   onClick={() => setMobileMenu(false)}
                   className={`px-6 py-5 text-[15px] border-b transition-all duration-300 ${
                     scroll
@@ -232,17 +194,13 @@ export default function Navbar() {
                       : "border-zinc-200 text-zinc-700 hover:bg-zinc-100"
                   }`}
                 >
-
                   {item}
-
                 </a>
               ))}
-
             </div>
 
             {/* MOBILE SEARCH */}
             <div className="p-5">
-
               <div
                 className={`h-14 rounded-2xl flex items-center gap-3 px-5 ${
                   scroll
@@ -250,15 +208,11 @@ export default function Navbar() {
                     : "bg-zinc-100 border border-zinc-200"
                 }`}
               >
-
                 <HiSearch
                   className={`text-2xl ${
-                    scroll
-                      ? "text-zinc-400"
-                      : "text-zinc-500"
+                    scroll ? "text-zinc-400" : "text-zinc-500"
                   }`}
                 />
-
                 <input
                   type="text"
                   placeholder="Search..."
@@ -268,18 +222,12 @@ export default function Navbar() {
                       : "text-black placeholder:text-zinc-500"
                   }`}
                 />
-
               </div>
-
             </div>
-
           </div>
-
         </div>
-
       </nav>
 
-      {/* SPACING */}
       <div className="h-[88px]"></div>
     </>
   );
