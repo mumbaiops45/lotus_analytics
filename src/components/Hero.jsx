@@ -170,7 +170,7 @@ const Hero = () => {
           {/* FLOAT CARD TOP */}
           <motion.div
             className="hero-card-float"
-            style={{ top: "-30px", right: "-20px" }}
+            style={{ top: "-30px", right: "-20px" ,zIndex: 10}}
             animate={{ y: [0, -12, 0] }}
             transition={{
               repeat: Infinity,
@@ -231,7 +231,7 @@ const Hero = () => {
               style={{
                 display: "flex",
                 justifyContent: "space-between",
-                marginTop: 8,
+                marginTop: 8
               }}
             >
               <span style={{ fontSize: 11, color: "var(--text-muted)" }}>
@@ -252,7 +252,7 @@ const Hero = () => {
           {/* FLOAT CARD BOTTOM */}
           <motion.div
             className="hero-card-float"
-            style={{ bottom: "-20px", left: "-30px" }}
+            style={{ bottom: "-90px", left: "-80px",zIndex: 5 }}
             animate={{ y: [0, 12, 0] }}
             transition={{
               repeat: Infinity,
