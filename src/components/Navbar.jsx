@@ -83,7 +83,7 @@ export default function Navbar() {
                     {/* DROPDOWN */}
                     {item !== "Centraverse™" && (
                       <div
-                        className={`absolute right-0 top-[170%] w-[260px] rounded-2xl overflow-hidden opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 shadow-[0_20px_60px_rgba(0,0,0,0.18)] ${
+                        className={`absolute right-0 top-full mt-3 w-[260px] rounded-2xl overflow-hidden opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 shadow-[0_20px_60px_rgba(0,0,0,0.18)] ${
                           scroll
                             ? "bg-[#151515] border border-white/10"
                             : "bg-white border border-zinc-200"
@@ -167,7 +167,7 @@ export default function Navbar() {
           </div>
         </div>
 
-        {/* MOBILE MENU */}
+        {/* MOBILE MENU (FIXED HERE) */}
         <div
           className={`xl:hidden transition-all duration-500 overflow-hidden ${
             mobileMenu
@@ -183,20 +183,21 @@ export default function Navbar() {
             }`}
           >
             <div className="flex flex-col">
+
               {menu.concat("Contact").map((item, index) => (
-                <a
+                <button
                   key={index}
-                  href={item === "Contact" ? "#contact" : "#"}
                   onClick={() => setMobileMenu(false)}
-                  className={`px-6 py-5 text-[15px] border-b transition-all duration-300 ${
+                  className={`w-full text-left px-6 py-5 text-[15px] border-b transition-all duration-300 ${
                     scroll
                       ? "border-white/10 text-white hover:bg-white/5"
                       : "border-zinc-200 text-zinc-700 hover:bg-zinc-100"
                   }`}
                 >
                   {item}
-                </a>
+                </button>
               ))}
+
             </div>
 
             {/* MOBILE SEARCH */}
@@ -224,6 +225,7 @@ export default function Navbar() {
                 />
               </div>
             </div>
+
           </div>
         </div>
       </nav>

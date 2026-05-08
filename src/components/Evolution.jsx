@@ -102,7 +102,7 @@ const YearCard = ({ year, items, isOpen, onClick, index }) => {
 };
 
 const Evolution = () => {
-  const headerRef = useRef(null);
+  // const headerRef = useRef(null);
   // const isHeaderInView = useInView(headerRef, { once: true, amount: 0.3 });
 
   const [openIndex, setOpenIndex] = useState(null);
