@@ -6,7 +6,8 @@ const Hero = () => {
   const bars = [45, 70, 55, 90, 65, 110, 95];
 
   return (
-    <section className="hero relative overflow-hidden" id="home">
+    // <section className="hero relative overflow-hidden" id="home">
+      <section className="hero relative overflow-hidden pt-[0px]" id="home mt-5">
       <div className="hero-bg" />
 
       {/* Animated Lotus Background */}
@@ -267,7 +268,7 @@ const Hero = () => {
         </motion.div>
       </div>
     </section>
-  );
+);
 };
 
 export default Hero;
