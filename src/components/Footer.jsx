@@ -1,15 +1,47 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import {
+  HiArrowUp,
+  HiOutlineMail,
+  HiOutlinePhone,
+  HiOutlineLocationMarker,
+} from "react-icons/hi";
+
+import {
+  FaLinkedinIn,
+  FaFacebookF,
+  FaYoutube,
+  FaXTwitter,
+} from "react-icons/fa6";
 
 const Footer = () => {
+  const [showScroll, setShowScroll] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowScroll(window.scrollY > 400);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+
   return (
     <>
       <style>{`
-        /* --- Your CSS remains unchanged. --- */
         footer {
           background: #F5F2EB;
           padding: 80px 5vw 30px;
           color: #1e1e1c;
           font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+          position: relative;
         }
 
         .footer-inner {
@@ -24,7 +56,6 @@ const Footer = () => {
           padding-bottom: 50px;
         }
 
-        /* BRAND COLUMN */
         .brand-column {
           max-width: 360px;
         }
@@ -40,7 +71,6 @@ const Footer = () => {
           width: auto;
         }
 
-        /* ADDRESS + CONTACT */
         .contact-details {
           font-size: 14px;
           line-height: 1.8;
@@ -49,22 +79,58 @@ const Footer = () => {
         }
 
         .contact-box p {
-          margin: 0 0 12px 0;
+          margin: 0 0 16px 0;
         }
 
         .contact-label {
           font-weight: 700;
           color: #111;
-          display: inline-block;
+          display: flex;
+          align-items: center;
+          gap: 8px;
           margin-bottom: 4px;
+        }
+
+        .contact-label svg {
+          color: #5A8070;
+          font-size: 17px;
         }
 
         .contact-value {
           color: #444;
           display: block;
+          padding-left: 25px;
         }
 
-        /* COLUMN TITLE */
+        .email-social-row {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          padding-left: 25px;
+          margin-top: 14px;
+          flex-wrap: wrap;
+        }
+
+        .email-social-icon {
+          width: 38px;
+          height: 38px;
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background: rgba(90,128,112,0.1);
+          color: #5A8070;
+          text-decoration: none;
+          transition: all 0.3s ease;
+          font-size: 15px;
+        }
+
+        .email-social-icon:hover {
+          background: #5A8070;
+          color: #fff;
+          transform: translateY(-3px);
+        }
+
         .col-title {
           font-size: 12px;
           letter-spacing: 1.5px;
@@ -85,7 +151,6 @@ const Footer = () => {
           border-radius: 2px;
         }
 
-        /* LINKS */
         .link-list {
           list-style: none;
           padding: 0;
@@ -121,7 +186,6 @@ const Footer = () => {
           width: 100%;
         }
 
-        /* BUTTON */
         .contact-sales-btn {
           display: inline-flex;
           align-items: center;
@@ -149,69 +213,93 @@ const Footer = () => {
           transform: translateY(-2px);
         }
 
-        /* BOTTOM BAR */
         .footer-bottom {
           display: flex;
           justify-content: space-between;
           align-items: center;
-          flex-wrap: wrap;
-          gap: 15px;
+          gap: 20px;
           padding-top: 25px;
           border-top: 1px solid rgba(0,0,0,0.08);
+          flex-wrap: wrap;
+        }
+
+        .footer-left {
+          font-size: 12px;
+          font-weight: 700;
+          color: #1e1e1c;
+        }
+
+        .footer-center {
           font-size: 12px;
           color: #666;
+          text-align: center;
+          font-weight: 500;
+        }
+
+        .footer-center span {
+          color: #5A8070;
+          font-weight: 700;
         }
 
         .footer-legal {
           display: flex;
-          gap: 20px;
           align-items: center;
-          flex-wrap: wrap;
+          gap: 14px;
         }
 
         .footer-legal a {
-          color: #666;
+          color: #1e1e1c;
           text-decoration: none;
-          transition: 0.2s;
+          font-size: 12px;
+          font-weight: 600;
+          transition: 0.25s ease;
         }
 
         .footer-legal a:hover {
           color: #5A8070;
         }
 
-        .development-credit {
-          font-size: 11px;
-          color: #888;
-          margin-top: 8px;
-          text-align: center;
-          letter-spacing: 0.3px;
-        }
+        /* SCROLL BUTTON */
 
-        .social-icons {
-          display: flex;
-          gap: 10px;
-        }
-
-        .social-icon {
-          width: 36px;
-          height: 36px;
+        .scroll-top-btn {
+          position: fixed;
+          right: 28px;
+          bottom: 28px;
+          width: 55px;
+          height: 55px;
           border-radius: 50%;
+          border: none;
+          background: #5A8070;
+          color: white;
           display: flex;
           align-items: center;
           justify-content: center;
-          background: rgba(0,0,0,0.05);
-          color: #333;
-          text-decoration: none;
-          transition: 0.25s ease;
-          font-weight: 600;
           cursor: pointer;
-          border: none;
+          z-index: 9999;
+          box-shadow: 0 10px 30px rgba(90,128,112,0.35);
+          transition: all 0.3s ease;
+          animation: floatBtn 2.5s ease-in-out infinite;
         }
 
-        .social-icon:hover {
-          background: #5A8070;
-          color: #fff;
-          transform: translateY(-3px);
+        .scroll-top-btn:hover {
+          transform: translateY(-5px) scale(1.05);
+          background: #1a2c26;
+        }
+
+        .scroll-top-btn svg {
+          font-size: 24px;
+        }
+
+        @keyframes floatBtn {
+          0% {
+            transform: translateY(0px);
+          }
+          50% {
+            transform: translateY(-8px);
+          }
+          100% {
+            transform: translateY(0px);
+          }
         }
 
         @media (max-width: 900px) {
@@ -219,8 +307,18 @@ const Footer = () => {
             grid-template-columns: 1fr 1fr;
             gap: 40px;
           }
+
           .brand-column {
             grid-column: span 2;
+          }
+
+          .footer-bottom {
+            flex-direction: column;
+            text-align: center;
+          }
+
+          .footer-legal {
+            justify-content: center;
           }
         }
 
@@ -228,45 +326,139 @@ const Footer = () => {
           .footer-grid {
             grid-template-columns: 1fr;
           }
+
           .footer-bottom {
             flex-direction: column;
             text-align: center;
           }
+
           .footer-legal {
             justify-content: center;
+            flex-wrap: wrap;
+          }
+
+          .scroll-top-btn {
+            width: 48px;
+            height: 48px;
+            right: 18px;
+            bottom: 18px;
+          }
+
+          .email-social-row {
+            padding-left: 0;
+          }
+
+          .contact-value {
+            padding-left: 0;
           }
         }
       `}</style>
 
       <footer>
         <div className="footer-inner">
+
           <div className="footer-grid">
-            {/* BRAND + ADDRESS */}
+
+            {/* BRAND */}
             <div className="brand-column">
+
               <div className="logo-area">
-                <img src="/Logo-transparent.png" alt="Lotus Analytics Logo" className="brand-logo" />
+                <img
+                  src="/Logo-transparent.png"
+                  alt="Lotus Analytics Logo"
+                  className="brand-logo"
+                />
               </div>
+
               <div className="contact-details">
+
                 <div className="contact-box">
+
                   <p>
-                    <span className="contact-label">101 River Street</span>
-                    <span className="contact-value">Warrensburg, NY, 12885, US</span>
+                    <span className="contact-label">
+                      <HiOutlineLocationMarker />
+                      Address
+                    </span>
+
+                    <span className="contact-value">
+                      101 River Street <br />
+                      Warrensburg, NY, 12885, US
+                    </span>
                   </p>
+
                   <p>
-                    <span className="contact-label">Telephone:</span>
-                    <span className="contact-value">1.855.LOTUS.US</span>
+                    <span className="contact-label">
+                      <HiOutlinePhone />
+                      Telephone
+                    </span>
+
+                    <span className="contact-value">
+                      1.855.LOTUS.US
+                    </span>
                   </p>
+
                   <p>
-                    <span className="contact-label">E-mail:</span>
-                    <span className="contact-value">info@lotusus.com</span>
+                    <span className="contact-label">
+                      <HiOutlineMail />
+                      E-mail
+                    </span>
+
+                    <span className="contact-value">
+                      info@lotusus.com
+                    </span>
+
+                    {/* SOCIAL ICONS */}
+                    <div className="email-social-row">
+
+                      <a
+                        href="https://www.linkedin.com/company/lotus-analytics/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="email-social-icon"
+                      >
+                        <FaLinkedinIn />
+                      </a>
+
+                      <a
+                        href="https://www.facebook.com/lotusanalyticsusa"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="email-social-icon"
+                      >
+                        <FaFacebookF />
+                      </a>
+
+                      <a
+                        href="https://x.com/analyticslotus?lang=en"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="email-social-icon"
+                      >
+                        <FaXTwitter />
+                      </a>
+
+                      <a
+                        href="https://www.youtube.com/channel/UCURoGNIeW8gGgW8Q07TtCbA"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="email-social-icon"
+                      >
+                        <FaYoutube />
+                      </a>
+
+                    </div>
                   </p>
+
                 </div>
               </div>
             </div>
 
-            {/* BUSINESS SERVICES – FULL LIST */}
+            {/* SERVICES */}
             <div>
-              <div className="col-title">Business Services</div>
+              <div className="col-title">
+                Business Services
+              </div>
+
               <ul className="link-list">
                 <li>Accounting & Finance</li>
                 <li>Loss Prevention</li>
@@ -275,66 +467,89 @@ const Footer = () => {
                 <li>Supply Chain Management</li>
                 <li>HR</li>
                 <li>Compliance</li>
-                <li>Logistics & Reverse Logistics</li>
-                <li>Business Consulting</li>
-                <li>Custom Insights</li>
-                <li>Custom Developments</li>
-                <li>The Processing Partners</li>
               </ul>
             </div>
 
-            {/* SOLUTIONS – FULL LIST */}
+            {/* SOLUTIONS */}
             <div>
-              <div className="col-title">Solutions</div>
+              <div className="col-title">
+                Solutions
+              </div>
+
               <ul className="link-list">
                 <li>Ticketing System</li>
                 <li>Communication Manager</li>
                 <li>Reporting</li>
-                <li>Real Estate</li>
                 <li>Asset Tracker</li>
-                <li>BI</li>
                 <li>Fraud Prevention</li>
-                <li>Sales Engagement Center</li>
-                <li>Commission Portal</li>
-                <li>Warehouse Management</li>
                 <li>Inventory Management</li>
-                <li>Real Time</li>
               </ul>
             </div>
 
-            {/* COMPANY + CONTACT SALES BUTTON */}
+            {/* COMPANY */}
             <div>
-              <div className="col-title">Company</div>
+              <div className="col-title">
+                Company
+              </div>
+
               <ul className="link-list">
                 <li>About Us</li>
                 <li>Careers</li>
               </ul>
-              <button className="contact-sales-btn">Contact Sales</button>
+
+              <button className="contact-sales-btn">
+                Contact Sales
+              </button>
             </div>
+
           </div>
 
-          {/* BOTTOM – LEGAL + CREDIT + SOCIAL */}
+          {/* FOOTER BOTTOM */}
           <div className="footer-bottom">
-            <div>
-              <div className="footer-legal">
-                <span>© 2021 All Rights Reserved, The Lotus Group of Companies, USA</span>
-                <span>|</span>
-                <a href="/privacy-policy">Privacy Policy</a>
-                <span>|</span>
-                <a href="/terms-of-use">Terms of Use</a>
-              </div>
-              {/* <div className="development-credit">
-                developed by nakshatra namaha creation
-              </div> */}
+
+            {/* LEFT */}
+            <div className="footer-left">
+              Copyright ©2021 All Rights Reserved,
+              The Lotus Group of Companies, USA
             </div>
-            <div className="social-icons">
-              <button className="social-icon" aria-label="LinkedIn">in</button>
-              <button className="social-icon" aria-label="X (Twitter)">𝕏</button>
-              <button className="social-icon" aria-label="Facebook">f</button>
+
+            {/* CENTER */}
+            <div className="footer-center">
+              Designed & Developed by{" "}
+              <span>
+                Nakshatra Namaha Creations
+              </span>
             </div>
+
+            {/* RIGHT */}
+            <div className="footer-legal">
+
+              <a href="/privacy-policy">
+                Privacy Policy
+              </a>
+
+              <span>|</span>
+
+              <a href="/terms-of-use">
+                Terms of Use
+              </a>
+
+            </div>
+
           </div>
+
         </div>
       </footer>
+
+      {/* SCROLL TO TOP BUTTON */}
+      {showScroll && (
+        <button
+          className="scroll-top-btn"
+          onClick={scrollToTop}
+        >
+          <HiArrowUp />
+        </button>
+      )}
     </>
   );
 };

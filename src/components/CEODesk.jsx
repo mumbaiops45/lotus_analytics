@@ -1,17 +1,31 @@
-// components/CEODesk.jsx
+// components/CEODesk.jsx – Heading now uses two sage colours
 import React, { useEffect, useRef } from "react";
 import { motion, useInView, useAnimation } from "framer-motion";
+
+// Lotus Analytics color palette (matches other components)
+const T = {
+  cream: "#F5F0E8",
+  creamDark: "#EDE6D8",
+  white: "#FAFAF8",
+  charcoal: "#141410",
+  sage: "#8FAF9A",          // main sage
+  sageMid: "#6B9B87",
+  sageLight: "#B5CFC0",     // light sage for 'Desk'
+  sageDark: "#5A8070",      // dark sage for main heading
+  gold: "#C9A96E",
+  goldLight: "#E8D5B0",
+  muted: "#6B7B72",
+  border: "rgba(90,128,112,0.14)",
+};
 
 const CEODesk = () => {
   const sectionRef = useRef(null);
   const isInView = useInView(sectionRef, { once: true, amount: 0.2 });
   const controls = useAnimation();
-  // const [countDone, setCountDone] = useState(false);
 
   useEffect(() => {
     if (isInView) {
       controls.start("visible");
-      // setCountDone(true);
     }
   }, [isInView, controls]);
 
@@ -20,7 +34,7 @@ const CEODesk = () => {
       <style>{`
         .ceo-section {
           position: relative;
-          background: #070707;  /* matches ServiceHighlights dark background */
+          background: ${T.cream};
           overflow: hidden;
           min-height: 90vh;
           display: flex;
@@ -31,10 +45,10 @@ const CEODesk = () => {
           content: "";
           position: absolute;
           inset: 0;
-          background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.06'/%3E%3C/svg%3E");
+          background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
           pointer-events: none;
           z-index: 1;
-          opacity: 0.35;
+          opacity: 0.5;
         }
 
         .ceo-section::after {
@@ -62,8 +76,8 @@ const CEODesk = () => {
           background: linear-gradient(
             90deg,
             transparent 0%,
-            var(--gold, #c9a96e) 30%,
-            var(--gold, #c9a96e) 70%,
+            ${T.gold} 30%,
+            ${T.gold} 70%,
             transparent 100%
           );
           z-index: 2;
@@ -83,13 +97,12 @@ const CEODesk = () => {
           gap: 40px;
         }
 
-        /* LEFT */
         .ceo-left {
           display: flex;
           flex-direction: column;
           justify-content: center;
           padding: 90px 50px 90px 0;
-          border-right: 1px solid rgba(255, 255, 255, 0.05);
+          border-right: 1px solid ${T.border};
           position: relative;
         }
 
@@ -103,10 +116,10 @@ const CEODesk = () => {
           background: linear-gradient(
             to bottom,
             transparent,
-            var(--gold, #c9a96e),
+            ${T.gold},
             transparent
           );
-          opacity: 0.4;
+          opacity: 0.6;
         }
 
         .ceo-eyebrow {
@@ -119,7 +132,7 @@ const CEODesk = () => {
         .ceo-eyebrow-line {
           width: 40px;
           height: 1px;
-          background: var(--sage, #8FAF9A);
+          background: ${T.sage};
           opacity: 0.7;
         }
 
@@ -128,14 +141,15 @@ const CEODesk = () => {
           font-weight: 600;
           letter-spacing: 4px;
           text-transform: uppercase;
-          color: var(--sage-light, #B5CFC0);
+          color: ${T.sage};
         }
 
+        /* HEADING – uses two sage colours */
         .ceo-heading {
           font-family: "Cormorant Garamond", serif;
           font-size: clamp(38px, 4.5vw, 64px);
           font-weight: 700;
-          color: #ffffff;
+          color: ${T.sageDark};          /* dark sage for main text */
           line-height: 0.95;
           letter-spacing: -1px;
           margin-bottom: 34px;
@@ -144,10 +158,11 @@ const CEODesk = () => {
 
         .ceo-heading .desk {
           display: block;
-          color: transparent;
-          -webkit-text-stroke: 1px rgba(255, 255, 255, 0.25);
+          color: ${T.sageLight};          /* light sage for outlined word */
+          -webkit-text-stroke: 1px ${T.sageLight};
           font-style: italic;
           font-size: 0.82em;
+          font-weight: 600;
         }
 
         .ceo-quote-wrap {
@@ -162,20 +177,20 @@ const CEODesk = () => {
           top: -8px;
           font-size: 56px;
           line-height: 1;
-          color: var(--gold, #c9a96e);
-          opacity: 0.35;
+          color: ${T.gold};
+          opacity: 0.5;
         }
 
         .ceo-quote-text {
           font-size: 14px;
           line-height: 1.9;
-          color: rgba(255, 255, 255, 0.65);
+          color: ${T.muted};
           font-style: italic;
         }
 
         .ceo-quote-text em {
           font-style: normal;
-          color: var(--sage-light, #B5CFC0);
+          color: ${T.sage};
           font-weight: 500;
         }
 
@@ -189,7 +204,7 @@ const CEODesk = () => {
           font-family: "Cormorant Garamond", serif;
           font-size: 20px;
           font-weight: 600;
-          color: var(--gold, #c9a96e);
+          color: ${T.gold};
           letter-spacing: 1px;
         }
 
@@ -198,7 +213,7 @@ const CEODesk = () => {
           font-weight: 500;
           letter-spacing: 2px;
           text-transform: uppercase;
-          color: rgba(255, 255, 255, 0.45);
+          color: ${T.muted};
         }
 
         .ceo-signature {
@@ -207,12 +222,11 @@ const CEODesk = () => {
           width: 100px;
         }
 
-        /* VALUES */
         .ceo-values {
           margin-top: 40px;
           display: flex;
           gap: 28px;
-          border-top: 1px solid rgba(255, 255, 255, 0.07);
+          border-top: 1px solid ${T.border};
           padding-top: 24px;
         }
 
@@ -226,7 +240,7 @@ const CEODesk = () => {
           font-family: "Cormorant Garamond", serif;
           font-size: 22px;
           font-weight: 700;
-          color: var(--sage-light, #B5CFC0);
+          color: ${T.sageDark};
           line-height: 1;
         }
 
@@ -234,10 +248,9 @@ const CEODesk = () => {
           font-size: 10px;
           letter-spacing: 1.5px;
           text-transform: uppercase;
-          color: rgba(255, 255, 255, 0.35);
+          color: ${T.muted};
         }
 
-        /* RIGHT */
         .ceo-right {
           position: relative;
           display: flex;
@@ -258,19 +271,20 @@ const CEODesk = () => {
           background:
             linear-gradient(
               to right,
-              rgba(7,7,7,0.7) 0%,
+              rgba(245, 240, 232, 0.7) 0%,
               transparent 30%
             ),
             linear-gradient(
               to top,
-              rgba(7,7,7,0.7) 0%,
+              rgba(245, 240, 232, 0.7) 0%,
               transparent 30%
             ),
             url("https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=900&q=80&fit=crop&crop=face")
             center / cover no-repeat;
-          filter: grayscale(100%) contrast(1.05) brightness(0.72);
+          filter: grayscale(0%) contrast(1.02) brightness(1);
           transition: transform 8s ease-in-out;
-          box-shadow: 0 40px 80px rgba(0,0,0,0.5);
+          box-shadow: 0 40px 80px rgba(0,0,0,0.15);
+          border: 1px solid ${T.border};
         }
 
         .ceo-right:hover .ceo-portrait {
@@ -297,7 +311,7 @@ const CEODesk = () => {
           padding: 28px;
           background: linear-gradient(
             to top,
-            rgba(7, 7, 7, 0.96) 60%,
+            rgba(245, 240, 232, 0.96) 60%,
             transparent 100%
           );
           display: flex;
@@ -310,7 +324,7 @@ const CEODesk = () => {
           font-family: "Cormorant Garamond", serif;
           font-size: 26px;
           font-weight: 700;
-          color: #ffffff;
+          color: ${T.charcoal};
           line-height: 1;
           margin-bottom: 4px;
         }
@@ -319,21 +333,22 @@ const CEODesk = () => {
           font-size: 10px;
           letter-spacing: 2px;
           text-transform: uppercase;
-          color: var(--sage-light, #B5CFC0);
+          color: ${T.sage};
         }
 
         .ceo-stat-float {
           position: absolute;
           top: 50px;
           right: 30px;
-          background: rgba(0, 0, 0, 0.5);
+          background: rgba(255, 255, 255, 0.9);
           backdrop-filter: blur(12px);
-          border: 1px solid rgba(255, 255, 255, 0.1);
+          border: 1px solid ${T.border};
           border-radius: 14px;
           padding: 16px 20px;
           z-index: 5;
           text-align: center;
           animation: ceoStatFloat 4s ease-in-out infinite;
+          box-shadow: 0 8px 20px rgba(0,0,0,0.08);
         }
 
         @keyframes ceoStatFloat {
@@ -345,7 +360,7 @@ const CEODesk = () => {
           font-family: "Cormorant Garamond", serif;
           font-size: 28px;
           font-weight: 700;
-          color: var(--gold, #c9a96e);
+          color: ${T.gold};
           line-height: 1;
           display: block;
           margin-bottom: 4px;
@@ -355,10 +370,9 @@ const CEODesk = () => {
           font-size: 9px;
           letter-spacing: 2px;
           text-transform: uppercase;
-          color: rgba(255,255,255,0.6);
+          color: ${T.muted};
         }
 
-        /* MOBILE */
         @media (max-width: 1024px) {
           .ceo-inner {
             grid-template-columns: 1fr;
@@ -367,7 +381,7 @@ const CEODesk = () => {
           .ceo-left {
             padding: 70px 0 50px;
             border-right: none;
-            border-bottom: 1px solid rgba(255,255,255,0.06);
+            border-bottom: 1px solid ${T.border};
           }
           .ceo-right {
             min-height: 520px;
@@ -518,7 +532,7 @@ const CEODesk = () => {
               >
                 <path
                   d="M8 28 C 20 10, 30 35, 45 18 C 55 8, 60 32, 72 20 C 82 10, 90 30, 112 22"
-                  stroke="var(--gold, #c9a96e)"
+                  stroke={T.gold}
                   strokeWidth="1.5"
                   strokeLinecap="round"
                   fill="none"
