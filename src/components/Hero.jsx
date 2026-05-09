@@ -1,10 +1,10 @@
 // components/Hero.jsx
 import React from "react";
 import { motion } from "framer-motion";
-
+import FloatingHeroActions from "./FloatingActions";
 const Hero = () => {
   const bars = [45, 70, 55, 90, 65, 110, 95];
-
+<></>
   return (
     // <section className="hero relative overflow-hidden" id="home">
       <section className="hero relative overflow-hidden pt-[0px]" id="home mt-5">
@@ -267,7 +267,9 @@ const Hero = () => {
           </motion.div>
         </motion.div>
       </div>
+      <FloatingHeroActions/>
     </section>
+    
 );
 };
 
